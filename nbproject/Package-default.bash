@@ -10,9 +10,9 @@ CND_CONF=default
 CND_DISTDIR=dist
 TMPDIR=build/${CND_CONF}/${IMAGE_TYPE}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/Q10-MCC-Melody.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-OUTPUT_BASENAME=Q10-MCC-Melody.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-PACKAGE_TOP_DIR=q10-mcc-melody/
+OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/MCC-Melody-DataStreamer.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+OUTPUT_BASENAME=MCC-Melody-DataStreamer.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+PACKAGE_TOP_DIR=mcc-melody-datastreamer/
 
 # Functions
 function checkReturnCode
@@ -57,15 +57,15 @@ mkdir -p ${TMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory ${TMPDIR}/q10-mcc-melody/bin
+makeDirectory ${TMPDIR}/mcc-melody-datastreamer/bin
 copyFileToTmpDir "${OUTPUT_PATH}" "${TMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/package/q10-mcc-melody.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/package/mcc-melody-datastreamer.tar
 cd ${TMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/q10-mcc-melody.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/mcc-melody-datastreamer.tar *
 checkReturnCode
 
 # Cleanup

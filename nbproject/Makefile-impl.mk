@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Q10-MCC-Melody
+PROJECTNAME=MCC-Melody-DataStreamer
 
 # Active Configuration
 DEFAULTCONF=default

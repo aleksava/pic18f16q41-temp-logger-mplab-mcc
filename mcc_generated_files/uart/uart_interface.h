@@ -1,3 +1,26 @@
+/**
+  uart_interface Generated Driver API Header File
+
+  @Company
+    Microchip Technology Inc.
+
+  @File Name
+    uart_interface.h
+
+  @Summary
+    This is the generated driver interface header file for the uart_interface driver.
+
+  @Description
+    This file provides common enumerations for uart_interface driver.
+    Generation Information :
+        Product Revision  :  CCL - 1.8.2
+        Device            :  PIC18F47Q43
+        Driver Version    :  1.0.0
+    The generated drivers are tested against the following:
+        Compiler          :  XC8 v2.2
+        MPLAB             :  Standalone
+*/
+
 /*
 Copyright (c) [2012-2020] Microchip Technology Inc.  
 
@@ -31,42 +54,37 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
     third party licenses prohibit any of the restrictions described here, 
     such restrictions will not apply to such third party software.
 */
-#include "mcc_generated_files/system/system.h"
 
-/*
-    Main application
+#ifndef UART_INTERFACE_H
+#define UART_INTERFACE_H
+/**
+  Section: Included Files
 */
+#include <stdbool.h>
+#include <stdint.h>
+#include <xc.h>
+    
+/**
+  uart_interface
 
+  @Description
+    Structure containing the function pointers of uart_interface driver.
+ */
+struct UART_INTERFACE
+{   
+    void (*Initialize)(void);
+    uint8_t (*Read)(void);
+    void (*Write)(uint8_t);
+    void (*RxCompleteCallbackRegister)(void (*CallbackHandler));
+    void (*TxCompleteCallbackRegister)(void (*CallbackHandler));
+    void (*ErrorCallbackRegister)(void (*CallbackHandler)(void));
+    void (*FramingErrorCallbackRegister)(void (*CallbackHandler)(void));
+    void (*OverrunErrorCallbackRegister)(void (*CallbackHandler)(void));
+    void (*ParityErrorCallbackRegister)(void (*CallbackHandler));
+    void (*ChecksumErrorCallbackRegister)(void (*CallbackHandler));
+    bool (*IsRxReady)(void);
+    bool (*IsTxReady)(void);
+    bool (*IsTxDone)(void);
+};
 
-uint8_t count = 0;
-uint16_t count16 = 0;
-uint32_t count32 = 0;
-float count_f = 0.5;
-
-void TC_overflow_cb(void){
-
-    LED_RE0_Toggle();
-    DebugIO_RE2_Toggle();
-    variableWrite_sendFrame(count, count16, count32, count_f);
-    count +=5;
-    count16 += 1000;
-    count32 += 50000000;
-    count_f += 0.2;
-}
-
-int main(void)
-{
-    SYSTEM_Initialize();
-
-    Timer0.TimeoutCallbackRegister(TC_overflow_cb);
-
-    // Enable the Global Interrupts
-    INTERRUPT_GlobalInterruptEnable();
-
-    // Enable the Peripheral Interrupts
-    INTERRUPT_PeripheralInterruptEnable();
-
-    while(1)
-    {
-    }    
-}
+#endif // end of UART_INTERFACE_H

@@ -184,6 +184,15 @@ void EUSART2_Write(uint8_t txData)
     TX2REG = txData;    // Write the data byte to the USART.
 }
 
+char getch(void)
+{
+    return EUSART2_Read();
+}
+
+void putch(char txData)
+{
+    EUSART2_Write(txData);
+}
 
 
 

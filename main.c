@@ -47,7 +47,8 @@ void TC_overflow_cb(void){
 
     LED_RE0_Toggle();
     DebugIO_RE2_Toggle();
-    variableWrite_sendFrame(count, count16, count32, count_f);
+    variableWrite_SendFrame( count, count16, count32, count_f);
+    
     count +=5;
     count16 += 1000;
     count32 += 50000000;

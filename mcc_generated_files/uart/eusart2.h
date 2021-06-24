@@ -66,6 +66,7 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
 #include <stdbool.h>
 #include <stdint.h>
 #include "uart_interface.h"
+#include <stdio.h>
 
 /**
   Section: Macro Declarations

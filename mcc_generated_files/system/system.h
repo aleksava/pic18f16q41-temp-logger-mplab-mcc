@@ -61,10 +61,10 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
 #include <conio.h>
 #include "config_bits.h"
 #include "../system/clock.h"
-#include "../system/interrupt.h"
-#include "../timer/tmr0.h"
-#include "../uart/eusart2.h"
 #include "../system/pins.h"
+#include "../uart/eusart2.h"
+#include "../timer/tmr0.h"
+#include "../system/interrupt.h"
 #include "../data_streamer/data_streamer.h"
 
 /**

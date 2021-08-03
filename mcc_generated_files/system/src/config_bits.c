@@ -15,8 +15,8 @@
     Generation Information : 
         Driver Version    :  2.00
     The generated drivers are tested against the following:
-        Compiler          :  XC8 v2.20
-        MPLAB             :  MPLAB X 5.40
+        Compiler          :  XC8 v2.31
+        MPLAB             :  MPLAB X 5.45
 */
 
 /*
@@ -55,67 +55,55 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
 
 // Configuration bits: selected in the GUI
 
-//CONFIG1L
-#pragma config FEXTOSC = ECH     // External Oscillator Mode Selection->EC (external clock) above 8 MHz; PFM set to high power
-#pragma config RSTOSC = EXTOSC     // Power-Up Default Value for COSC->EXTOSC operating per FEXTOSC bits (device manufacturing default)
+//CONFIG1
+#pragma config FEXTOSC = ECH     // External Oscillator Mode Selection->EC (external clock) above 8 MHz
+#pragma config RSTOSC = EXTOSC     // Power-up Default Value for COSC->EXTOSC operating per FEXTOSC bits (device manufacturing default)
 
-//CONFIG1H
+//CONFIG2
+#pragma config FCMENP = ON     // Fail-Safe Clock Monitor Enable - Primary XTAL Enable->Fail-Safe Clock Monitor enabled; timer will flag FSCMP bit and OSFIF interrupt on EXTOSC failure.
 #pragma config CLKOUTEN = OFF     // Clock Out Enable->CLKOUT function is disabled
 #pragma config FCMEN = ON     // Fail-Safe Clock Monitor Enable->Fail-Safe Clock Monitor enabled
 #pragma config CSWEN = ON     // Clock Switch Enable->Writing to NOSC and NDIV is allowed
+#pragma config FCMENS = ON     // Fail-Safe Clock Monitor Enable - Secondary XTAL Enable->Fail-Safe Clock Monitor enabled; timer will flag FSCMP bit and OSFIF interrupt on SOSC failure.
+#pragma config PR1WAY = ON     // PRLOCKED One-Way Set Enable->PRLOCKED bit can be cleared and set only once
 
-//CONFIG2L
-#pragma config MCLRE = EXTMCLR     // Master Clear (MCLR) Enable->MCLR pin (RE3) is MCLR
-#pragma config BOREN = SBORDIS     // Brown-Out Reset Enable->Brown-out Reset enabled , SBOREN bit is ignored
-#pragma config PWRTE = OFF     // Power-Up Timer Enable->Power up timer disabled
-#pragma config LPBOREN = OFF     // Low-Power BOR Enable->Low power BOR is disabled
+//CONFIG3
+#pragma config MVECEN = OFF     // Multivector Enable->Interrupt contoller does not use vector table to prioritze interrupts
+#pragma config MCLRE = EXTMCLR     // Master Clear (MCLR) Enable->If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR 
+#pragma config BOREN = SBORDIS     // Brown-out Reset Enable->Brown-out Reset enabled , SBOREN bit is ignored
+#pragma config PWRTS = PWRT_OFF     // Power-up Timer Selection->PWRT is disabled
+#pragma config IVT1WAY = ON     // IVTLOCK One-Way Set Enable->IVTLOCKED bit can be cleared and set only once
+#pragma config LPBOREN = OFF     // Low-Power BOR Enable->Low-Power BOR disabled
 
-//CONFIG2H
+//CONFIG4
 #pragma config XINST = OFF     // Extended Instruction Set Enable->Extended Instruction Set and Indexed Addressing Mode disabled
-#pragma config ZCD = OFF     // ZCD Disable->ZCD disabled. ZCD can be enabled by setting the ZCDSEN bit of ZCDCON
+#pragma config LVP = ON     // Low-Voltage Programming Enable->Low voltage programming enabled. MCLR/VPP pin function is MCLR. MCLRE configuration bit is ignored
+#pragma config ZCD = OFF     // ZCD Disable->ZCD module is disabled. ZCD can be enabled by setting the ZCDSEN bit of ZCDCON
 #pragma config STVREN = ON     // Stack Overflow/Underflow Reset Enable->Stack full/underflow will cause Reset
-#pragma config BORV = VBOR_190     // Brown-out Reset Voltage Selection->Brown-out Reset Voltage (VBOR) set to 1.90V
-#pragma config PPS1WAY = ON     // PPSLOCKED bit One-Way Set Enable->PPSLOCK bit can be cleared and set only once; PPS registers remain locked after one clear/set cycle
+#pragma config BORV = VBOR_1P9     // Brown-out Reset Voltage Selection->Brown-out Reset Voltage (VBOR) set to 1.9V
+#pragma config PPS1WAY = ON     // PPSLOCKED One-Way Set Enable->PPSLOCKED bit can be cleared and set only once; PPS registers remain locked after one clear/set cycle
 
-//CONFIG3L
+//CONFIG5
 #pragma config WDTCPS = WDTCPS_31     // WDT Period Select->Divider ratio 1:65536; software control of WDTPS
-#pragma config WDTE = OFF     // WDT Operating Mode->WDT Disabled
+#pragma config WDTE = OFF     // WDT Operating Mode->WDT Disabled; SWDTEN is ignored
 
-//CONFIG3H
+//CONFIG6
 #pragma config WDTCWS = WDTCWS_7     // WDT Window Select->window always open (100%); software control; keyed access not required
 #pragma config WDTCCS = SC     // WDT Input Clock Selector->Software Control
 
-//CONFIG4L
-#pragma config WRT1 = OFF     // User NVM Self-Write Protection Block 1->Block 1 (004000-007FFFh) not write-protected
-#pragma config WRT0 = OFF     // User NVM Self-Write Protection Block 0->Block 0 (000800-003FFFh) not write-protected
-#pragma config WRT2 = OFF     // User NVM Self-Write Protection Block 2->Block 2 (008000-00BFFFh) not write-protected
-#pragma config WRT3 = OFF     // User NVM Self-Write Protection Block 3->Block 3 (00C000-00FFFFh) not write-protected
-#pragma config WRT4 = OFF     // User NVM Self-Write Protection Block 4->Block 4 (010000-013FFFh) not write-protected
-#pragma config WRT5 = OFF     // User NVM Self-Write Protection Block 5->Block 5 (014000-017FFFh) not write-protected
-#pragma config WRT6 = OFF     // User NVM Self-Write Protection Block 6->Block 6 (018000-01BFFFh) not write-protected
-#pragma config WRT7 = OFF     // User NVM Self-Write Protection Block 7->Block 7 (01C000-01FFFFh) not write-protected
+//CONFIG7
+#pragma config SAFEN = OFF     // Storage Area Flash (SAF) Enable->SAF disabled
+#pragma config BBEN = OFF     // Boot Block Enable->Boot block disabled
+#pragma config BBSIZE = BBSIZE_512     // Boot Block Size Selection->Boot Block size is 512 words
+#pragma config DEBUG = OFF     // Debugger Enable->Background Debugger disabled
 
-//CONFIG4H
-#pragma config WRTB = OFF     // Boot Block Write Protection->Boot Block (000000-0007FFh) not write-protected
-#pragma config WRTC = OFF     // Configuration Register Write Protection->Configuration registers (300000-30000Bh) not write-protected
-#pragma config WRTD = OFF     // Data EEPROM Write Protection->Data EEPROM not write-protected
-#pragma config LVP = ON     // Low Voltage Programming Enable->Low voltage programming enabled. MCLR/VPP pin function is MCLR. MCLRE configuration bit is ignored
-#pragma config SCANE = ON     // Scanner Enable->Scanner module is available for use, SCANMD bit can control the module
+//CONFIG8
+#pragma config WRTB = OFF     // Boot Block Write Protection->Boot Block not Write protected
+#pragma config WRTC = OFF     // Configuration Register Write Protection->Configuration registers not Write protected
+#pragma config WRTD = OFF     // Data EEPROM Write Protection->Data EEPROM not Write protected
+#pragma config WRTAPP = OFF     // Application Block Write Protection->Application Block not write protected
+#pragma config WRTSAF = OFF     // Storage Area Flash (SAF) Write Protection->SAF not Write Protected
 
-//CONFIG5L
-#pragma config CPD = OFF     // Data NVM (DFM) Memory Code Protection->DataNVM code protection disabled
-#pragma config CP = OFF     // User NVM Program Memory Code Protection->UserNVM code protection disabled
-
-//CONFIG6L
-#pragma config EBTR1 = OFF     // Table Read Protection Block 1->Block 1 (004000-007FFFh) not protected from table reads executed in other blocks
-#pragma config EBTR0 = OFF     // Table Read Protection Block 0->Block 0 (000800-003FFFh) not protected from table reads executed in other blocks
-#pragma config EBTR3 = OFF     // Table Read Protection Block 3->Block 3 (00C000-00FFFFh) not protected from table reads executed in other blocks
-#pragma config EBTR2 = OFF     // Table Read Protection Block 2->Block 2 (008000-00BFFFh) not protected from table reads executed in other blocks
-#pragma config EBTR6 = OFF     // Table Read Protection Block 6->Block 6 (018000-01BFFFh) not protected from table reads executed in other blocks
-#pragma config EBTR5 = OFF     // Table Read Protection Block 5->Block 5 (014000-017FFFh) not protected from table reads executed in other blocks
-#pragma config EBTR4 = OFF     // Table Read Protection Block 4->Block 4 (010000-013FFFh) not protected from table reads executed in other blocks
-#pragma config EBTR7 = OFF     // Table Read Protection Block 7->Block 7 (01C000-01FFFFh) not protected from table reads executed in other blocks
-
-//CONFIG6H
-#pragma config EBTRB = OFF     // Boot Block Table Read Protection->Boot Block (000000-0007FFh) not protected from table reads executed in other blocks
+//CONFIG9
+#pragma config CP = OFF     // User Program Flash Memory and Data EEPROM Code Protection->PFM and Data EEPROM code protection disabled
 

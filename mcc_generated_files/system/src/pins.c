@@ -50,70 +50,60 @@ void PIN_MANAGER_Initialize(void)
     LATx registers
     */
     LATA = 0x0;
-    LATB = 0x0;
+    LATB = 0x50;
     LATC = 0x0;
-    LATD = 0x0;
-    LATE = 0x0;
 
     /**
     TRISx registers
     */
-    TRISA = 0xFF;
-    TRISB = 0xFF;
-    TRISC = 0xFF;
-    TRISD = 0xFE;
-    TRISE = 0x2;
+    TRISA = 0x3F;
+    TRISB = 0x20;
+    TRISC = 0xFD;
 
     /**
     ANSELx registers
     */
-    ANSELA = 0xFF;
-    ANSELB = 0xFF;
+    ANSELA = 0x37;
+    ANSELB = 0x0;
     ANSELC = 0xFF;
-    ANSELD = 0xFF;
-    ANSELE = 0x2;
 
     /**
     WPUx registers
     */
     WPUA = 0x0;
-    WPUB = 0x0;
+    WPUB = 0x50;
     WPUC = 0x0;
-    WPUD = 0x0;
-    WPUE = 0x0;
 
     /**
     ODx registers
     */
     ODCONA = 0x0;
-    ODCONB = 0x0;
+    ODCONB = 0x50;
     ODCONC = 0x0;
-    ODCOND = 0x0;
-    ODCONE = 0x0;
 
     /**
     SLRCONx registers
     */
-    SLRCONA = 0xFF;
-    SLRCONB = 0xFF;
+    SLRCONA = 0x37;
+    SLRCONB = 0xF0;
     SLRCONC = 0xFF;
-    SLRCOND = 0xFF;
-    SLRCONE = 0x7;
 
     /**
     INLVLx registers
     */
-    INLVLA = 0xFF;
-    INLVLB = 0xFF;
+    INLVLA = 0x3F;
+    INLVLB = 0xF0;
     INLVLC = 0xFF;
-    INLVLD = 0xFF;
-    INLVLE = 0xF;
     /**
     PPS registers
     */
-    T0CKIPPS = 0x4; //RA4->TMR0:T0CKI;
-    RX2PPS = 0x19; //RD1->EUSART2:RX2;
-    RD0PPS = 0x0B;  //RD0->EUSART2:TX2;
+    T0CKIPPS = 0x15; //RC5->TMR0:T0CKI;
+    U1RXPPS = 0xD; //RB5->UART1:U1RX;
+    RB7PPS = 0x10;  //RB7->UART1:TX1;
+    I2C1SCLPPS = 0xE;  //RB6->I2C1:I2C1SCL;
+    RB6PPS = 0x21;  //RB6->I2C1:I2C1SCL;
+    I2C1SDAPPS = 0xC;  //RB4->I2C1:I2C1SDA;
+    RB4PPS = 0x22;  //RB4->I2C1:I2C1SDA;
 
    /**
     IOCx registers 
@@ -127,9 +117,6 @@ void PIN_MANAGER_Initialize(void)
     IOCCP = 0x0;
     IOCCN = 0x0;
     IOCCF = 0x0;
-    IOCEP = 0x0;
-    IOCEN = 0x0;
-    IOCEF = 0x0;
 
 
 }

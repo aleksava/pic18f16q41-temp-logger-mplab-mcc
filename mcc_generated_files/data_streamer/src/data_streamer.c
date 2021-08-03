@@ -1,7 +1,7 @@
 // Generate variable frames for sending data to the MPLAB Data Visualizer, 
 // e.g. to be display on a graph.
 #include <stdint.h>
-#include "../../uart/eusart2.h"
+#include "../../uart/uart1.h"
 #include "../data_streamer.h"
 
 #define DATA_STREAMER_START_BYTE 3  //trivial Data Streamer Protocol start of frame token
@@ -13,23 +13,17 @@ static void variableWrite_SendValue(uint8_t* byte_ptr, uint8_t num_bytes)
  {
       for(uint8_t i = 0; i < num_bytes; i++)
       {
-         EUSART2_Write(byte_ptr[i]);
+         UART1_Write(byte_ptr[i]);
       }
 }
 
-void variableWrite_SendFrame(uint8_t count, uint16_t count16, uint32_t count32, float count_f)
+void variableWrite_SendFrame(float degreesCelsius)
 {
-   EUSART2_Write(DATA_STREAMER_START_BYTE);  
+   UART1_Write(DATA_STREAMER_START_BYTE);  
 
-   EUSART2_Write(count);                                 // uint8_t
+   variableWrite_SendValue((uint8_t *) &degreesCelsius, 4);         // float
 
-   variableWrite_SendValue((uint8_t *) &count16, 2);         // uint16_t
+   UART1_Write(DATA_STREAMER_END_BYTE);  
 
-   variableWrite_SendValue((uint8_t *) &count32, 4);         // uint32_t
-
-   variableWrite_SendValue((uint8_t *) &count_f, 4);         // float
-
-   EUSART2_Write(DATA_STREAMER_END_BYTE);  
-
-   while(!EUSART2_IsTxDone());
+   while(!UART1_IsTxDone());
 }

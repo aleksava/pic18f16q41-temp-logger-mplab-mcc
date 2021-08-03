@@ -15,8 +15,8 @@
     Generation Information :
         Driver Version    :  2.00
     The generated drivers are tested against the following:
-        Compiler          :  XC8 v2.20
-        MPLAB             :  MPLAB X 5.40
+        Compiler          :  XC8 v2.31
+        MPLAB             :  MPLAB X 5.45
 */
 
 /*

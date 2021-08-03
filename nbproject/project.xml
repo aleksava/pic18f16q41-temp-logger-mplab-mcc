@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>Q10-MCC-Melody</name>
+            <name>PIC18F16Q41-MCC-Melody</name>
             <creation-uuid>1d755844-0b00-4374-9df2-4037a063eeed</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>

@@ -17,7 +17,7 @@
     Generation Information :
         Driver Version    :  2.03
     The generated drivers are tested against the following:
-        Compiler          :  XC8 v2.2 or later
+        Compiler          :  XC8 v2.20 or later
         MPLAB 	          :  MPLABX v5.45
 */
 
@@ -69,7 +69,7 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
  * @Example
     INTERRUPT_GlobalInterruptEnable();
  */
-#define INTERRUPT_GlobalInterruptEnable() (INTCONbits.GIE = 1)
+#define INTERRUPT_GlobalInterruptEnable() (INTCON0bits.GIE = 1)
 
 /**
  * @Param
@@ -81,7 +81,7 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
  * @Example
     INTERRUPT_GlobalInterruptDisable();
  */
-#define INTERRUPT_GlobalInterruptDisable() (INTCONbits.GIE = 0)
+#define INTERRUPT_GlobalInterruptDisable() (INTCON0bits.GIE = 0)
 
 /**
  * @Param
@@ -94,7 +94,8 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
  * @Example
     INTERRUPT_GlobalInterruptStatus();
  */
-#define INTERRUPT_GlobalInterruptStatus() (INTCONbits.GIE)
+#define INTERRUPT_GlobalInterruptStatus() (INTCON0bits.GIE)
+
 
 /**
  * @Param
@@ -102,31 +103,7 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
  * @Returns
     none
  * @Description
-    This macro will enable peripheral interrupts.
- * @Example
-    INTERRUPT_PeripheralInterruptEnable();
- */
-#define INTERRUPT_PeripheralInterruptEnable() (INTCONbits.PEIE = 1)
-
-/**
- * @Param
-    none
- * @Returns
-    none
- * @Description
-    This macro will disable peripheral interrupts.
- * @Example
-    INTERRUPT_PeripheralInterruptDisable();
- */
-#define INTERRUPT_PeripheralInterruptDisable() (INTCONbits.PEIE = 0)
-
-/**
- * @Param
-    none
- * @Returns
-    none
- * @Description
-    Initializes PIC18 peripheral interrupt priorities; enables/disables priority vectors
+    Initializes PIC18 peripheral interrupt priorities; enables/disables priority vectors; Initializes External Interrupt
  * @Example
     INTERRUPT_Initialize();
  */
@@ -160,7 +137,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT0_InterruptFlagClear()       (PIR0bits.INT0IF = 0)
+#define EXT_INT0_InterruptFlagClear()       (PIR1bits.INT0IF = 0)
 
 /**
   @Summary
@@ -193,7 +170,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT0_InterruptDisable()     (PIE0bits.INT0IE = 0)
+#define EXT_INT0_InterruptDisable()     (PIE1bits.INT0IE = 0)
 
 /**
   @Summary
@@ -224,7 +201,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT0_InterruptEnable()       (PIE0bits.INT0IE = 1)
+#define EXT_INT0_InterruptEnable()       (PIE1bits.INT0IE = 1)
 
 /**
   @Summary
@@ -255,7 +232,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT0_risingEdgeSet()          (INTCONbits.INT0EDG = 1)
+#define EXT_INT0_risingEdgeSet()          (INTCON0bits.INT0EDG = 1)
 
 /**
   @Summary
@@ -279,14 +256,14 @@ void INTERRUPT_Initialize (void);
     Setting the external interrupt to handle positive edge interrupts
     <code>
     // set the edge
-    EXT_INT0_fallingEdgeSet();
+    EXT_INT0_risingEdgeSet();
     // clear the interrupt flag and enable the interrupt
     EXT_INT0_InterruptFlagClear();
     EXT_INT0_InterruptEnable();
     </code>
 
 */
-#define EXT_INT0_fallingEdgeSet()          (INTCONbits.INT0EDG = 0)
+#define EXT_INT0_fallingEdgeSet()          (INTCON0bits.INT0EDG = 0)
 /**
   @Summary
     Clears the interrupt flag for INT1
@@ -315,7 +292,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT1_InterruptFlagClear()       (PIR0bits.INT1IF = 0)
+#define EXT_INT1_InterruptFlagClear()       (PIR6bits.INT1IF = 0)
 
 /**
   @Summary
@@ -348,7 +325,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT1_InterruptDisable()     (PIE0bits.INT1IE = 0)
+#define EXT_INT1_InterruptDisable()     (PIE6bits.INT1IE = 0)
 
 /**
   @Summary
@@ -379,7 +356,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT1_InterruptEnable()       (PIE0bits.INT1IE = 1)
+#define EXT_INT1_InterruptEnable()       (PIE6bits.INT1IE = 1)
 
 /**
   @Summary
@@ -410,7 +387,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT1_risingEdgeSet()          (INTCONbits.INT1EDG = 1)
+#define EXT_INT1_risingEdgeSet()          (INTCON0bits.INT1EDG = 1)
 
 /**
   @Summary
@@ -434,14 +411,14 @@ void INTERRUPT_Initialize (void);
     Setting the external interrupt to handle positive edge interrupts
     <code>
     // set the edge
-    EXT_INT1_fallingEdgeSet();
+    EXT_INT1_risingEdgeSet();
     // clear the interrupt flag and enable the interrupt
     EXT_INT1_InterruptFlagClear();
     EXT_INT1_InterruptEnable();
     </code>
 
 */
-#define EXT_INT1_fallingEdgeSet()          (INTCONbits.INT1EDG = 0)
+#define EXT_INT1_fallingEdgeSet()          (INTCON0bits.INT1EDG = 0)
 /**
   @Summary
     Clears the interrupt flag for INT2
@@ -470,7 +447,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT2_InterruptFlagClear()       (PIR0bits.INT2IF = 0)
+#define EXT_INT2_InterruptFlagClear()       (PIR10bits.INT2IF = 0)
 
 /**
   @Summary
@@ -503,7 +480,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT2_InterruptDisable()     (PIE0bits.INT2IE = 0)
+#define EXT_INT2_InterruptDisable()     (PIE10bits.INT2IE = 0)
 
 /**
   @Summary
@@ -534,7 +511,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT2_InterruptEnable()       (PIE0bits.INT2IE = 1)
+#define EXT_INT2_InterruptEnable()       (PIE10bits.INT2IE = 1)
 
 /**
   @Summary
@@ -565,7 +542,7 @@ void INTERRUPT_Initialize (void);
     </code>
 
 */
-#define EXT_INT2_risingEdgeSet()          (INTCONbits.INT2EDG = 1)
+#define EXT_INT2_risingEdgeSet()          (INTCON0bits.INT2EDG = 1)
 
 /**
   @Summary
@@ -589,14 +566,14 @@ void INTERRUPT_Initialize (void);
     Setting the external interrupt to handle positive edge interrupts
     <code>
     // set the edge
-    EXT_INT2_fallingEdgeSet();
+    EXT_INT2_risingEdgeSet();
     // clear the interrupt flag and enable the interrupt
     EXT_INT2_InterruptFlagClear();
     EXT_INT2_InterruptEnable();
     </code>
 
 */
-#define EXT_INT2_fallingEdgeSet()          (INTCONbits.INT2EDG = 0)
+#define EXT_INT2_fallingEdgeSet()          (INTCON0bits.INT2EDG = 0)
 
 /**
    Section: External Interrupt Handlers

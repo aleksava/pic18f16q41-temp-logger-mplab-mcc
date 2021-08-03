@@ -75,8 +75,8 @@ struct UART_INTERFACE
     void (*Initialize)(void);
     uint8_t (*Read)(void);
     void (*Write)(uint8_t);
-    void (*RxCompleteCallbackRegister)(void (*CallbackHandler));
-    void (*TxCompleteCallbackRegister)(void (*CallbackHandler));
+    void (*RxCompleteCallbackRegister)(void (*CallbackHandler)(void));
+    void (*TxCompleteCallbackRegister)(void (*CallbackHandler)(void));
     void (*ErrorCallbackRegister)(void (*CallbackHandler)(void));
     void (*FramingErrorCallbackRegister)(void (*CallbackHandler)(void));
     void (*OverrunErrorCallbackRegister)(void (*CallbackHandler)(void));

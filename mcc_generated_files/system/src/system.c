@@ -15,8 +15,8 @@
     Generation Information :
         Driver Version    :  2.00
     The generated drivers are tested against the following:
-        Compiler          :  XC8 v2.20
-        MPLAB             :  MPLAB X 5.40
+        Compiler          :  XC8 v2.31
+        MPLAB             :  MPLAB X 5.45
 */
 
 /*
@@ -63,8 +63,9 @@ void SYSTEM_Initialize(void)
 {
     CLOCK_Initialize();
     PIN_MANAGER_Initialize();
-    EUSART2_Initialize();
-    Timer0_Initialize();
+    I2C1_Initialize();
+    Timer_Initialize();
+    UART1_Initialize();
     INTERRUPT_Initialize();
 }
 

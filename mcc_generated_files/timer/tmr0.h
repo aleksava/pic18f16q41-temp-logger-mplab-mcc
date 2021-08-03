@@ -72,7 +72,7 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
  @struct TMR_INTERFACE
  @brief This is an instance of TMR_INTERFACE for Timer-0 module
  */
-extern const struct TMR_INTERFACE Timer0;
+extern const struct TMR_INTERFACE Timer;
 
 /**
  * @ingroup timer0_driver
@@ -84,45 +84,45 @@ extern const struct TMR_INTERFACE Timer0;
  * @code
  * void main(void)
  * {
- *     Timer0_Initialize();
+ *     Timer_Initialize();
  *     
  *     while(1)
  *     {   
- *         Timer0_Tasks();
+ *         Timer_Tasks();
  *     }
  * }
  * @endcode
  */
-void Timer0_Initialize(void);
+void Timer_Initialize(void);
 
 /**
  * @ingroup timer0_driver
  * @brief This function starts Timer-0.
- *        Timer-0 should be initialized with Timer0_Initialize() before calling this API.
+ *        Timer-0 should be initialized with Timer_Initialize() before calling this API.
  * @param void.
  * @return void.
  *
  * @code
  * void main(void)
  * {
- *     Timer0_Initialize();
+ *     Timer_Initialize();
  *     
  *     //Start timer if it is not already started
- *     Timer0_Start();
+ *     Timer_Start();
  *     
  *     while(1)
  *     {
- *         Timer0_Tasks();
+ *         Timer_Tasks();
  *     }
  * }
  * @endcode
  */
-void Timer0_Start(void);
+void Timer_Start(void);
 
 /**
  * @ingroup timer0_driver
  * @brief This function stops Timer-0.
- *        Timer-0 should be initialized with Timer0_Initialize() before calling this API.
+ *        Timer-0 should be initialized with Timer_Initialize() before calling this API.
  * @param void.
  * @return void.
  *
@@ -134,40 +134,40 @@ void Timer0_Start(void);
  *     {
  *         counter = 0;
  *         //Stop timer after 10 timeouts
- *         Timer0_Stop();
+ *         Timer_Stop();
  *     }
  * }
  * void main(void)
  * {
- *     Timer0_Initialize();
+ *     Timer_Initialize();
  *     
  *     while(1)
  *     {
- *         Timer0_Tasks();
+ *         Timer_Tasks();
  *     }
  * }
  * @endcode
  */
-void Timer0_Stop(void);
+void Timer_Stop(void);
 
 /**
  * @ingroup timer0_driver
  * @brief This function reads the 8 bits from TMRTMR0 register.
- *        Timer-0 should be initialized with Timer0_Initialize() before calling this API.
+ *        Timer-0 should be initialized with Timer_Initialize() before calling this API.
  * @param void.
  * @return 8-bit data from TMRTMR0 register.
  *
  * @code
  * void main(void)
  * {
- *     Timer0_Initialize();
+ *     Timer_Initialize();
  *     
  *     //Start timer if it is not already started
- *     Timer0_Start();
+ *     Timer_Start();
  *     
  *     while(1)
  *     {
- *         if(Timer0_Read() == 0x80)
+ *         if(Timer_Read() == 0x80)
  *         {
  *             //do something
  *         }
@@ -175,56 +175,56 @@ void Timer0_Stop(void);
  * }
  * @endcode
  */
-uint8_t Timer0_Read(void);
+uint8_t Timer_Read(void);
 
 /**
  * @ingroup timer0_driver
  * @brief This function writes 8-bit value to TMRTMR0 register.
- *        Timer-0 should be initialized with Timer0_Initialize() before calling this API.
+ *        Timer-0 should be initialized with Timer_Initialize() before calling this API.
  * @param 8-bit value to be written to TMRTMR0 register.
  * @return void.
  *
  * @code
  * void main(void)
  * {
- *     Timer0_Initialize();
+ *     Timer_Initialize();
  *     
  *     while(1)
  *     {
- *         if(Timer0_Read() == 0x0)
+ *         if(Timer_Read() == 0x0)
  *         {
- *             Timer0_Write(0x80)
+ *             Timer_Write(0x80)
  *         }
  *     }
  * }
  * @endcode
  */
-void Timer0_Write(size_t timerVal);
+void Timer_Write(size_t timerVal);
 
 /**
  * @ingroup timer0_driver
  * @brief This function loads 8 bit value to TMRTMR0H register.
- *        Timer-0 should be initialized with Timer0_Initialize() before calling this API.
+ *        Timer-0 should be initialized with Timer_Initialize() before calling this API.
  * @param 8-bit value to be written to TMRTMR0H register.
  * @return void.
  *
  * @code
  * void main(void)
  * {
- *     Timer0_Initialize();
+ *     Timer_Initialize();
  *     
  *     while(1)
  *     {
  *         if(some_condition)
  *         {
  *             //Change the period value of TMR0
- *             Timer0_Reload(0x80);
+ *             Timer_Reload(0x80);
  *         }
  *     }
  * }
  * @endcode
  */
-void Timer0_Reload(uint8_t periodVal);
+void Timer_Reload(uint8_t periodVal);
 
 /**
  * @ingroup timer0_driver
@@ -232,7 +232,7 @@ void Timer0_Reload(uint8_t periodVal);
  * @param void
  * @return void
  */
-void Timer0_OverflowISR(void);
+void Timer_OverflowISR(void);
 
 /**
  * @ingroup timer0_driver
@@ -248,8 +248,8 @@ void Timer0_OverflowISR(void);
  *
  * void main(void)
  * {
- *     Timer0_Initialize();
- *     Timer0_OverflowCallbackRegister(customOverflowCallback);
+ *     Timer_Initialize();
+ *     Timer_OverflowCallbackRegister(customOverflowCallback);
  *
  *     while(1)
  *     {
@@ -257,7 +257,7 @@ void Timer0_OverflowISR(void);
  * }
  * @endcode
  */
- void Timer0_OverflowCallbackRegister(void (* CallbackHandler)(void));
+ void Timer_OverflowCallbackRegister(void (* CallbackHandler)(void));
 
 
 /**

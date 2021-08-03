@@ -17,7 +17,7 @@
     Generation Information :
         Driver Version    :  2.03
     The generated drivers are tested against the following:
-        Compiler          :  XC8 v2.2 or later
+        Compiler          :  XC8 v2.20 or later
         MPLAB 	          :  MPLABX v5.45
 */
 
@@ -64,13 +64,13 @@ void (*INT2_InterruptHandler)(void);
 
 void  INTERRUPT_Initialize (void)
 {
-    // // Disable Interrupt Priority Vectors (16CXXX Compatibility Mode)
-    INTCONbits.IPEN = 0;
+    // Disable Interrupt Priority Vectors (16CXXX Compatibility Mode)
+    INTCON0bits.IPEN = 0;
 
     // Clear the interrupt flag
     // Set the external interrupt edge detect
     EXT_INT0_InterruptFlagClear();   
-    EXT_INT0_risingEdgeSet();
+    EXT_INT0_risingEdgeSet();    
     // Set Default Interrupt Handler
     INT0_SetInterruptHandler(INT0_DefaultInterruptHandler);
     // EXT_INT0_InterruptEnable();
@@ -78,7 +78,7 @@ void  INTERRUPT_Initialize (void)
     // Clear the interrupt flag
     // Set the external interrupt edge detect
     EXT_INT1_InterruptFlagClear();   
-    EXT_INT1_risingEdgeSet();
+    EXT_INT1_risingEdgeSet();    
     // Set Default Interrupt Handler
     INT1_SetInterruptHandler(INT1_DefaultInterruptHandler);
     // EXT_INT1_InterruptEnable();
@@ -86,7 +86,7 @@ void  INTERRUPT_Initialize (void)
     // Clear the interrupt flag
     // Set the external interrupt edge detect
     EXT_INT2_InterruptFlagClear();   
-    EXT_INT2_risingEdgeSet();
+    EXT_INT2_risingEdgeSet();    
     // Set Default Interrupt Handler
     INT2_SetInterruptHandler(INT2_DefaultInterruptHandler);
     // EXT_INT2_InterruptEnable();
@@ -96,17 +96,10 @@ void  INTERRUPT_Initialize (void)
 void __interrupt() INTERRUPT_InterruptManager (void)
 {
     // interrupt handler
-    if(INTCONbits.PEIE == 1)
+    if(PIE3bits.TMR0IE == 1 && PIR3bits.TMR0IF == 1)
     {
-        if(PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1)
-        {
-            Timer0_OverflowISR();
-        } 
-        else
-        {
-            //Unhandled Interrupt
-        }
-    }      
+        Timer_OverflowISR();
+    }
     else
     {
         //Unhandled Interrupt
@@ -191,6 +184,7 @@ void INT2_DefaultInterruptHandler(void){
     // add your INT2 interrupt custom code
     // or set custom function using INT2_SetInterruptHandler()
 }
+
 /**
  End of File
 */

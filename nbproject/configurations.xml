@@ -12,6 +12,12 @@
                        projectFiles="true">
           <itemPath>mcc_generated_files/data_streamer/data_streamer.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="i2c_host" displayName="i2c_host" projectFiles="true">
+          <itemPath>mcc_generated_files/i2c_host/i2c_host_types.h</itemPath>
+          <itemPath>mcc_generated_files/i2c_host/i2c_host_interface.h</itemPath>
+          <itemPath>mcc_generated_files/i2c_host/i2c_simple_host.h</itemPath>
+          <itemPath>mcc_generated_files/i2c_host/i2c1.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <itemPath>mcc_generated_files/system/pins.h</itemPath>
           <itemPath>mcc_generated_files/system/interrupt.h</itemPath>
@@ -24,8 +30,8 @@
           <itemPath>mcc_generated_files/timer/timer_interface.h</itemPath>
         </logicalFolder>
         <logicalFolder name="uart" displayName="uart" projectFiles="true">
-          <itemPath>mcc_generated_files/uart/eusart2.h</itemPath>
           <itemPath>mcc_generated_files/uart/uart_interface.h</itemPath>
+          <itemPath>mcc_generated_files/uart/uart1.h</itemPath>
         </logicalFolder>
       </logicalFolder>
     </logicalFolder>
@@ -47,6 +53,15 @@
           </logicalFolder>
           <itemPath>mcc_generated_files/data_streamer/data_streamer.ds</itemPath>
         </logicalFolder>
+        <logicalFolder name="docs" displayName="docs" projectFiles="true">
+          <itemPath>mcc_generated_files/docs/i2c_simple.dox</itemPath>
+        </logicalFolder>
+        <logicalFolder name="i2c_host" displayName="i2c_host" projectFiles="true">
+          <logicalFolder name="src" displayName="src" projectFiles="true">
+            <itemPath>mcc_generated_files/i2c_host/src/i2c_simple_host.c</itemPath>
+            <itemPath>mcc_generated_files/i2c_host/src/i2c1.c</itemPath>
+          </logicalFolder>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
             <itemPath>mcc_generated_files/system/src/pins.c</itemPath>
@@ -63,7 +78,7 @@
         </logicalFolder>
         <logicalFolder name="uart" displayName="uart" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
-            <itemPath>mcc_generated_files/uart/src/eusart2.c</itemPath>
+            <itemPath>mcc_generated_files/uart/src/uart1.c</itemPath>
           </logicalFolder>
         </logicalFolder>
       </logicalFolder>
@@ -81,16 +96,16 @@
     <conf name="default" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <targetDevice>PIC18F47Q10</targetDevice>
+        <targetDevice>PIC18F16Q41</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
         <platformTool>nEdbgTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>2.20</languageToolchainVersion>
+        <languageToolchainVersion>2.32</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC18F-Q_DFP" vendor="Microchip" version="1.11.185"/>
+        <pack name="PIC18F-Q_DFP" vendor="Microchip" version="1.12.193"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -716,6 +731,8 @@
         <property key="periphComp5.gte" value="gt"/>
         <property key="periphComp6.gte" value="gt"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/MPLABX/I2C-devices/MCC-Melody-DataStreamer/debug/default/default_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"
